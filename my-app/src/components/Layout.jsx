@@ -2,12 +2,14 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import { Outlet } from "react-router-dom";
 
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
-    <div className="flex">
+    <div className="">
       <Sidebar />
-      <main className="flex-1 p-4">{children}</main>
-      <Outlet />
+      <div className="sm:ml-64 mt-10">
+        {/* <main className="flex-1">{children}</main> */}
+        <Outlet />{" "}
+      </div>
     </div>
   );
 };
