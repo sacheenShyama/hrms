@@ -1,0 +1,65 @@
+[
+  {
+    "createdAt": "2025-08-07T00:06:58.392Z",
+    "employee": "Rochelle Cartwright",
+    "dates": "01/01/2025 to 05/01/2025",
+    "status": "Pending",
+    "id": "1"
+  },
+  {
+    "createdAt": "2025-08-07T12:17:33.776Z",
+    "employee": "Regina Bauch",
+    "dates": "20/01/2025 to 23/01/2025",
+    "status": "Rejected",
+    "id": "2"
+  },
+  {
+    "createdAt": "2025-08-07T23:09:55.858Z",
+    "employee": "Antonio Runolfsson",
+    "dates": "03/05/2025 to 10/05/2025",
+    "status": "Accepted",
+    "id": "3"
+  },
+  {
+    "createdAt": "2025-08-07T16:02:55.123Z",
+    "employee": "Dr. Eileen Ernser",
+   "dates": "01/01/2025 to 05/01/2025",
+    "status": "Pending",
+    "id": "4"
+  },
+  {
+    "createdAt": "2025-08-07T00:39:01.511Z",
+    "employee": "Dr. Bobby Maggio",
+   "dates": "01/01/2025 to 05/01/2025",
+    "status": "Pending",
+    "id": "5"
+  },
+  {
+    "createdAt": "2025-08-07T20:35:31.319Z",
+    "employee": "Larry Barrows",
+  "dates": "01/01/2025 to 05/01/2025",
+    "status": "Pending",
+    "id": "6"
+  },
+  {
+    "createdAt": "2025-08-07T17:17:20.504Z",
+    "employee": "Mr. Colin Abbott",
+"dates": "01/01/2025 to 05/01/2025",
+    "status": "Pending",
+    "id": "7"
+  },
+  {
+    "createdAt": "2025-08-07T04:48:44.215Z",
+    "employee": "Nancy Kutch",
+  "dates": "01/01/2025 to 05/01/2025",
+    "status": "Pending",
+    "id": "8"
+  },
+  {
+    "createdAt": "2025-08-07T07:10:26.987Z",
+    "employee": "Tamara Schoen",
+  "dates": "01/01/2025 to 05/01/2025",
+    "status": "Pending",
+    "id": "9"
+  }
+]

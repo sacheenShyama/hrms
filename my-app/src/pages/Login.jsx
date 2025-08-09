@@ -1,29 +1,20 @@
-import React, { useState, useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { login } from "../services/api";
+import React, { useState } from "react";
+// import { AuthContext } from "../context/AuthContext";
+// import { useNavigate } from "react-router-dom";
+// import { login } from "../services/api";
+import { FcGoogle } from "react-icons/fc";
+import { IoEyeOffOutline } from "react-icons/io5";
+import { IoEyeOutline } from "react-icons/io5";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUser } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  //   const { setUser } = useContext(AuthContext);
+  //   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      const res = await login(email, password);
-      if (res.data.length > 0) {
-        setUser(res.data[0]); // assuming user object
-        localStorage.setItem("user", JSON.stringify(res.data[0]));
-        navigate("/");
-      } else {
-        alert("Invalid credentials");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Login failed");
-    }
   };
 
   return (
@@ -45,14 +36,9 @@ const Login = () => {
                   </p>
                   <button
                     type="button"
-                    className="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300"
+                    className="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-gray-900 bg-gray-300 hover:bg-gray-400 focus:ring-4 focus:ring-gray-300"
                   >
-                    <img
-                      className="h-5 mr-2"
-                      src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/motion-tailwind/img/logos/logo-google.png"
-                      alt=""
-                    />
-                    Sign in with Google
+                    <FcGoogle className="text-xl" /> &nbsp; Sign in with Google
                   </button>
                   <div className="flex items-center mb-3">
                     <hr className="h-0 border-b border-solid border-grey-500 grow" />
@@ -71,84 +57,43 @@ const Login = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="mail@loopple.com"
-                    className="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"
+                    className=" w-full px-5 py-4 mr-2 text-sm font-medium outline-none  mb-7  bg-gray-200 text-black rounded-2xl"
                   />
                   <label
                     htmlFor="password"
-                    className="mb-2 text-sm text-start text-grey-900"
+                    className="mb-2 text-sm text-start text-grey-900 flex justify-between"
                   >
-                    Password*
+                    Password*{" "}
+                    <p
+                      onClick={() => setShowPassword((prev) => !prev)}
+                      className="text-xl"
+                    >
+                      {showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />}
+                    </p>
                   </label>
                   <input
                     id="password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter a password"
-                    className="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"
+                    className=" w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none   bg-gray-200 text-black rounded-2xl"
                   />
-                  <div className="flex flex-row justify-between mb-8">
-                    <label className="relative inline-flex items-center mr-3 cursor-pointer select-none">
-                      <input
-                        type="checkbox"
-                        className="sr-only peer"
-                        defaultChecked
-                      />
-                      <div className="w-5 h-5 bg-white border-2 rounded-sm border-grey-500 peer peer-checked:border-0 peer-checked:bg-purple-blue-500">
-                        <img
-                          src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/motion-tailwind/img/icons/check.png"
-                          alt="tick"
-                        />
-                      </div>
-                      <span className="ml-3 text-sm font-normal text-grey-900">
-                        Keep me logged in
-                      </span>
-                    </label>
-                    <a
-                      href="#"
-                      className="mr-4 text-sm font-medium text-purple-blue-500"
-                    >
-                      Forget password?
-                    </a>
-                  </div>
+
                   <button
                     type="submit"
-                    className="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500"
+                    className="w-full px-6 py-5 mb-5 text-sm font-bold  text-white  md:w-96 rounded-2xl bg-black hover:bg-gray-800"
                   >
                     Sign In
                   </button>
                   <p className="text-sm leading-relaxed text-grey-900">
-                    Not registered yet?{" "}
-                    <a href="#" className="font-bold text-grey-700">
-                      Create an Account
-                    </a>
+                    Not registered yet?
+                    <span className="font-bold text-blue-600">
+                      &nbsp;Just put email & password
+                    </span>
                   </p>
                 </form>
               </div>
-            </div>
-          </div>
-          <div className="flex flex-wrap -mx-3 my-5">
-            <div className="w-full max-w-full sm:w-3/4 mx-auto text-center">
-              <p className="text-sm text-slate-500 py-1">
-                Tailwind CSS Component from{" "}
-                <a
-                  href="https://www.loopple.com/theme/motion-landing-library?ref=tailwindcomponents"
-                  className="text-slate-700 hover:text-slate-900"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Motion Landing Library
-                </a>{" "}
-                by{" "}
-                <a
-                  href="https://www.loopple.com"
-                  className="text-slate-700 hover:text-slate-900"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Loopple Builder
-                </a>
-              </p>
             </div>
           </div>
         </div>
