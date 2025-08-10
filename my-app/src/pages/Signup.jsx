@@ -1,31 +1,25 @@
 import React, { useEffect, useState } from "react";
-// import { AuthContext } from "../context/AuthContext";
-// import { useNavigate } from "react-router-dom";
-// import { login } from "../services/api";
+
 import { FcGoogle } from "react-icons/fc";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { IoEyeOutline } from "react-icons/io5";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CgSpinner } from "react-icons/cg";
 
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useSelector } from "react-redux";
-
-import { googleSignIn, loginUser } from "../redux/service/firebaseAuth";
+import { googleSignIn, registerUser } from "../redux/service/firebaseAuth";
 import { Link, useNavigate } from "react-router-dom";
-
+import { CgSpinner } from "react-icons/cg";
 const schema = z.object({
   email: z.string().email("Invalid email"),
   password: z.string().min(6, "password must be at least 6 characters"),
 });
 
-const Login = () => {
+const Signup = () => {
   const { user, loading, error } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  //   const { setUser } = useContext(AuthContext);
-  //   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -41,7 +35,7 @@ const Login = () => {
   const { email, password } = watch();
 
   const onSubmit = async () => {
-    await loginUser(email, password);
+    await registerUser(email, password);
   };
   const handleGoogleLogin = async () => {
     await googleSignIn();
@@ -59,14 +53,14 @@ const Login = () => {
                   className="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl"
                 >
                   <h3 className="mb-3 text-4xl font-extrabold text-dark-grey-900">
-                    Sign In
+                    Sign Up
                   </h3>
                   <p className="mb-4 text-grey-700">
                     Enter your email and password
                   </p>
                   <button
-                    type="button"
                     onClick={handleGoogleLogin}
+                    type="button"
                     className="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-gray-900 bg-gray-300 hover:bg-gray-400 focus:ring-4 focus:ring-gray-300"
                   >
                     <FcGoogle className="text-xl" /> &nbsp; Continue with Google
@@ -130,7 +124,7 @@ const Login = () => {
                       {loading ? (
                         <CgSpinner className="text-white text-xl animate-spin font-bold" />
                       ) : (
-                        "Sign In"
+                        "Sign Up"
                       )}{" "}
                     </p>
                   </button>
@@ -138,9 +132,9 @@ const Login = () => {
                     <p className="text-red-500 mt-4 text-sm">{error}</p>
                   )}
                   <p className="text-sm leading-relaxed text-grey-900">
-                    Not registered yet?
-                    <Link to="/signup" className="font-bold text-blue-600">
-                      &nbsp;Create an account
+                    Already have an account.
+                    <Link to="/login" className="font-bold text-blue-600">
+                      &nbsp;Go to login page
                     </Link>
                   </p>
                 </form>
@@ -153,4 +147,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

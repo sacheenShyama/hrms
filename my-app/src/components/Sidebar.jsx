@@ -2,11 +2,15 @@ import { useState } from "react";
 import { RiBarChartHorizontalLine } from "react-icons/ri";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { logOut } from "../redux/service/firebaseAuth";
+import { useSelector } from "react-redux";
+import { CgSpinner } from "react-icons/cg";
 
 export default function Sidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const { user, loading } = useSelector((state) => state.auth);
+  console.log("user", user);
   return (
     <div className="flex">
       {/* Toggle Button */}
@@ -51,15 +55,6 @@ export default function Sidebar() {
               </button>
               {isDropdownOpen && (
                 <ul className="py-2 space-y-2">
-                  {/* <li>
-                    <Link
-                      to={"/dashboard"}
-                      onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                      className="flex items-center w-full p-2 pl-11 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                    >
-                      Dashboard
-                    </Link>
-                  </li> */}
                   <li>
                     <Link
                       to={"/employee"}
@@ -78,17 +73,21 @@ export default function Sidebar() {
                       Leave Request
                     </Link>
                   </li>
-                  {/* <li>
-                    <Link
-                      to={"/profile"}
-                      onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                      className="flex items-center w-full p-2 pl-11 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                    >
-                      Profile
-                    </Link>
-                  </li> */}
                 </ul>
               )}
+            </li>
+            <li>
+              <button
+                onClick={() => logOut()}
+                disabled={loading}
+                className="ms-3 bg-black rounded-xl text-white px-4 py-1"
+              >
+                {loading ? (
+                  <CgSpinner className="text-white text-xl animate-spin font-bold" />
+                ) : (
+                  "Log Out"
+                )}
+              </button>
             </li>
           </ul>
         </div>
