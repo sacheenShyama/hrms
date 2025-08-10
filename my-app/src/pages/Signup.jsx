@@ -41,6 +41,8 @@ const Signup = () => {
     await googleSignIn();
   };
   console.log("user", user);
+  console.log("error", error);
+
   return (
     <>
       <div className="bg-white rounded-lg py-5 min-h-screen flex flex-col justify-center">
