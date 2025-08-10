@@ -51,7 +51,7 @@ export default function Sidebar() {
               </button>
               {isDropdownOpen && (
                 <ul className="py-2 space-y-2">
-                  <li>
+                  {/* <li>
                     <Link
                       to={"/dashboard"}
                       onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -59,7 +59,7 @@ export default function Sidebar() {
                     >
                       Dashboard
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link
                       to={"/employee"}
@@ -78,7 +78,7 @@ export default function Sidebar() {
                       Leave Request
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link
                       to={"/profile"}
                       onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -86,7 +86,7 @@ export default function Sidebar() {
                     >
                       Profile
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               )}
             </li>

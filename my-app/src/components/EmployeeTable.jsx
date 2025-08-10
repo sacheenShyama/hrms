@@ -2,7 +2,7 @@ import React from "react";
 
 const EmployeeTable = () => {
   return (
-    <div className="relative overflow-x-auto border border-gray-200 mt-8 p-4">
+    <div className="relative overflow-x-auto border border-gray-200 mt-8 p-4 rounded-xl">
       <div className="flex justify-between">
         <p className="text-xl font-bold">Employees List</p>
 

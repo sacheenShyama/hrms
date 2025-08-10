@@ -29,6 +29,7 @@ export const options = {
   hAxis: { titleTextStyle: { color: "#333" } },
   vAxis: { minValue: 0, },
   chartArea: { width: "70%", height: "70%" },
+  tooltip:{isHtml:true}
 };
 
 export function Charts() {
