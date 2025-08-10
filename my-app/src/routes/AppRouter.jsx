@@ -25,6 +25,7 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       {/* <Sidebar> */}
       <Route element={<Layout />}>
@@ -43,7 +44,7 @@ const AppRouter = () => {
         }
       /> */}
         <Route
-          path="employee"
+          path="/employee"
           element={
             <PrivateRoute>
               {" "}
