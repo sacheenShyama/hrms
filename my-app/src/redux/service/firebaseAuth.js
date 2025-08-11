@@ -18,10 +18,8 @@ import {
   logoutUser,
 } from "../features/authSlice";
 
-import { store } from "../store";
-
-export const registerUser = async (email, password) => {
-  store.dispatch(setLoading(true));
+export const registerUser = async (dispatch, email, password) => {
+  dispatch(setLoading(true));
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -29,18 +27,25 @@ export const registerUser = async (email, password) => {
       password
     );
     console.log("userCredential", userCredential);
-    const { uid, email, displayName, photoURL } = userCredential.user;
+    // const { uid, email, displayName, photoURL } = userCredential.user;
 
-    store.dispatch(setUser({ uid, userEmail: email, displayName, photoURL }));
+    dispatch(
+      setUser({
+        uid: userCredential.user.uid,
+        userEmail: userCredential.user.email,
+        displayName: userCredential.user.displayName,
+        photoURL: userCredential.user.photoURL,
+      })
+    );
   } catch (error) {
-    store.dispatch(setError(error.message));
+    dispatch(setError(error.message));
   } finally {
-    store.dispatch(setLoading(false));
+    dispatch(setLoading(false));
   }
 };
 
-export const googleSignIn = async () => {
-  store.dispatch(setLoading(true));
+export const googleSignIn = async (dispatch) => {
+  dispatch(setLoading(true));
   const provider = new GoogleAuthProvider();
 
   try {
@@ -49,16 +54,16 @@ export const googleSignIn = async () => {
     console.log("result", result);
     const { uid, email, displayName, photoURL } = result.user;
 
-    store.dispatch(setUser({ uid, userEmail: email, displayName, photoURL }));
+    dispatch(setUser({ uid, userEmail: email, displayName, photoURL }));
   } catch (error) {
-    store.dispatch(setError(error.message));
+    dispatch(setError(error.message));
   } finally {
-    store.dispatch(setLoading(false));
+    dispatch(setLoading(false));
   }
 };
 
-export const loginUser = async (email, password) => {
-  store.dispatch(setLoading(true));
+export const loginUser = async (dispatch, email, password) => {
+  dispatch(setLoading(true));
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,
@@ -67,18 +72,25 @@ export const loginUser = async (email, password) => {
     );
     console.log("result", userCredential);
 
-    const { uid, email, displayName, photoURL } = userCredential.user;
+    // const { uid, email,displayName, photoURL } = userCredential.user;
 
-    store.dispatch(setUser({ uid, userEmail: email, displayName, photoURL }));
+    dispatch(
+      setUser({
+        uid: userCredential.user.uid,
+        userEmail: userCredential.user.email,
+        displayName: userCredential.user.displayName,
+        photoURL: userCredential.user.photoURL,
+      })
+    );
   } catch (error) {
-    store.dispatch(setError(error.message));
+    dispatch(setError(error.message));
   } finally {
-    store.dispatch(setLoading(false));
+    dispatch(setLoading(false));
   }
 };
 
-export const logOut = async () => {
+export const logOut = async (dispatch) => {
   console.log("logout");
   await signOut(auth);
-  store.dispatch(logoutUser());
+  dispatch(logoutUser());
 };

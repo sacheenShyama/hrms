@@ -27,7 +27,7 @@ const AppRouter = () => {
           }
         />
         <Route
-          path="/leaveRequest"
+          path="/leave-request"
           element={
             <PrivateRoute>
               {" "}
