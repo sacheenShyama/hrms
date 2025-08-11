@@ -10,7 +10,7 @@ import { CgSpinner } from "react-icons/cg";
 
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { googleSignIn, loginUser } from "../redux/service/firebaseAuth";
 import { Link, useNavigate } from "react-router-dom";
@@ -22,6 +22,7 @@ const schema = z.object({
 
 const Login = () => {
   const { user, loading, error } = useSelector((state) => state.auth);
+  const dispatch=useDispatch()
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   //   const { setUser } = useContext(AuthContext);
@@ -41,12 +42,14 @@ const Login = () => {
   const { email, password } = watch();
 
   const onSubmit = async () => {
-    await loginUser(email, password);
+    await loginUser(dispatch,email, password);
   };
   const handleGoogleLogin = async () => {
-    await googleSignIn();
+    await googleSignIn(dispatch);
   };
   console.log("user", user);
+  console.log("error", error);
+
   return (
     <>
       <div className="bg-white rounded-lg py-5 min-h-screen flex flex-col justify-center">

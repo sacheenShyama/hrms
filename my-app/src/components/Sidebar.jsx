@@ -3,10 +3,11 @@ import { RiBarChartHorizontalLine } from "react-icons/ri";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { logOut } from "../redux/service/firebaseAuth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CgSpinner } from "react-icons/cg";
 
 export default function Sidebar() {
+  const dispatch = useDispatch();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { user, loading } = useSelector((state) => state.auth);
@@ -78,7 +79,7 @@ export default function Sidebar() {
             </li>
             <li>
               <button
-                onClick={() => logOut()}
+                onClick={() => logOut(dispatch)}
                 disabled={loading}
                 className="ms-3 bg-black rounded-xl text-white px-4 py-1"
               >

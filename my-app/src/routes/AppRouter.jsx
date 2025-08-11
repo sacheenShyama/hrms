@@ -9,41 +9,16 @@ import Profile from "../pages/Profile";
 import Sidebar from "../components/Sidebar";
 import Layout from "../components/Layout";
 import Signup from "../pages/Signup";
-// import { useDispatch } from "react-redux";
-// import {
-//   handleGoogleRedirectResult,
-//   listenForAuthChanges,
-// } from "../redux/service/firebaseAuth";
 
 const AppRouter = () => {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   handleGoogleRedirectResult();
-  //   listenForAuthChanges();
-  // }, []);
   return (
     <Routes>
+      <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      {/* <Sidebar> */}
       <Route element={<Layout />}>
-        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-        {/* <Route path="/employee" element={<Employees />} />
-        <Route path="/leave-request" element={<LeaveRequest />} />
-        <Route path="/profile" element={<Profile />} />{" "} */}
-        {/* </Sidebar> */}
-        {/* <Route
-        path="/"
-        element={
-          <PrivateRoute>
-            {" "}
-            <Dashboard />{" "}
-          </PrivateRoute>
-        }
-      /> */}
         <Route
-          path="employee"
+          path="/employee"
           element={
             <PrivateRoute>
               {" "}
@@ -52,7 +27,7 @@ const AppRouter = () => {
           }
         />
         <Route
-          path="/leaveRequest"
+          path="/leave-request"
           element={
             <PrivateRoute>
               {" "}
