@@ -41,8 +41,8 @@ const Signup = () => {
   const handleGoogleLogin = async () => {
     await googleSignIn(dispatch);
   };
-  console.log("user", user);
-  console.log("error", error);
+  // console.log("user", user);
+  // console.log("error", error);
 
   return (
     <>

@@ -22,7 +22,7 @@ const schema = z.object({
 
 const Login = () => {
   const { user, loading, error } = useSelector((state) => state.auth);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   //   const { setUser } = useContext(AuthContext);
@@ -42,13 +42,13 @@ const Login = () => {
   const { email, password } = watch();
 
   const onSubmit = async () => {
-    await loginUser(dispatch,email, password);
+    await loginUser(dispatch, email, password);
   };
   const handleGoogleLogin = async () => {
     await googleSignIn(dispatch);
   };
-  console.log("user", user);
-  console.log("error", error);
+  // console.log("user", user);
+  // console.log("error", error);
 
   return (
     <>

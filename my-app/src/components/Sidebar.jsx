@@ -11,7 +11,7 @@ export default function Sidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { user, loading } = useSelector((state) => state.auth);
-  console.log("user", user);
+  // console.log("user", user);
   return (
     <div className="flex">
       {/* Toggle Button */}

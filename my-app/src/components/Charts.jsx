@@ -1,46 +1,76 @@
-import React from "react";
-import { Chart } from "react-google-charts";
+import React, { useState } from "react";
+import Chart from "react-apexcharts";
 
-export const data = [
-  [
-    "Month",
-    "Developer",
-    "Sales",
-    "support",
-    "Designer",
-    "Project Manager",
-  ],
-  ["Jan", 100, 40, 20, 10, 20],
-  ["Fab", 10, 40, 20, 80, 20],
-  ["Mar", 10, 40, 20, 10, 40],
-  ["Apr", 10, 40, 20, 10, 20],
-  ["May", 10, 90, 20, 10, 20],
-  ["Jun", 10, 90, 20, 10, 20],
-  ["Jul", 10, 40, 20, 10, 20],
-  ["Aug", 10, 40, 80, 10, 20],
-  ["Sep", 10, 40, 30, 10, 20],
-  ["Oct", 10, 40, 20, 10, 20],
-  ["Nov", 10, 40, 20, 10, 20],
-  ["Dec", 10, 40, 20, 10, 100],
-];
+const Charts = () => {
+  const months = [
+    "Jan",
+    "Fab",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
-export const options = {
-  title: "Over all Employee Performance",
-  hAxis: { titleTextStyle: { color: "#333" } },
-  vAxis: { minValue: 0, },
-  chartArea: { width: "70%", height: "70%" },
-  tooltip:{isHtml:true}
-};
+  const seriesData = [
+    {
+      name: "Developer",
+      data: [100, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
+    },
+    { name: "Sales", data: [40, 40, 40, 40, 90, 90, 40, 40, 40, 40, 40, 40] },
+    { name: "Support", data: [5, 20, 100, 10, 20, 50, 20, 80, 30, 20, 90, 20] },
+    {
+      name: "Designer",
+      data: [10, 80, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
+    },
+    {
+      name: "Project Manager",
+      data: [20, 20, 40, 20, 20, 20, 20, 20, 20, 20, 20, 100],
+    },
+  ];
 
-export function Charts() {
+  const [chartData] = useState({
+    options: {
+      chart: {
+        type: "area",
+        toolbar: { show: true },
+      },
+      title: {
+        text: "Over all Employee Performance",
+        align: "center",
+      },
+      dataLabels: { enabled: false },
+      stroke: { curve: "smooth" },
+      xaxis: { categories: months },
+      yaxis: { min: 0 },
+      tooltip: { enabled: true },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.7,
+          opacityTo: 0.9,
+          stops: [0, 90, 100],
+        },
+      },
+    },
+    series: seriesData,
+  });
+
   return (
     <Chart
-      chartType="AreaChart"
+      options={chartData.options}
+      series={chartData.series}
+      type="area"
       width="100%"
       height="100%"
-      data={data}
-      options={options}
-      
     />
   );
-}
+};
+
+export default Charts;

@@ -1,8 +1,18 @@
-import React from "react";
-import { Charts } from "../components/Charts";
+import React, { useEffect } from "react";
+import Charts from "../components/Charts";
 import EmployeeTable from "../components/EmployeeTable";
+import { useDispatch, useSelector } from "react-redux";
+import { getEmployee } from "../redux/service/employeeApi";
 
 const Employees = () => {
+  const { employee, loading } = useSelector((state) => state.data);
+  const dispatch = useDispatch();
+
+  console.log(employee);
+
+  useEffect(() => {
+    getEmployee(dispatch);
+  }, [dispatch]);
   return (
     <div className="container m-auto">
       <div className=" w-full">
@@ -21,18 +31,18 @@ const Employees = () => {
                   style={{ width: "45%" }}
                 ></div>{" "}
               </div>
-              <p className="text-gray-400 mt-6">Miles morels</p>
+              <p className="text-gray-400 mt-6">Sachin kumar</p>
               <div className="w-full mt-2 bg-gray-200 rounded-full h-6 dark:bg-gray-700">
                 <div
                   className="bg-blue-500 h-6 rounded-full"
-                  style={{ width: "45%" }}
+                  style={{ width: "75%" }}
                 ></div>{" "}
               </div>
-              <p className="text-gray-400 mt-6">Miles morels</p>
+              <p className="text-gray-400 mt-6">Thor</p>
               <div className="w-full mt-2 bg-gray-200 rounded-full h-6 dark:bg-gray-700">
                 <div
                   className="bg-blue-500 h-6 rounded-full"
-                  style={{ width: "45%" }}
+                  style={{ width: "65%" }}
                 ></div>{" "}
               </div>
             </div>
@@ -41,7 +51,7 @@ const Employees = () => {
         </div>
       </div>
 
-      <EmployeeTable />
+      <EmployeeTable empData={employee} />
     </div>
   );
 };

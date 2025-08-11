@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import EmployeeTable from "../components/EmployeeTable";
 import ApexChart from "../components/ApexChart";
+import { useDispatch, useSelector } from "react-redux";
+import { getEmployee } from "../redux/service/employeeApi";
+import Charts from "../components/Charts";
 const LeaveRequest = () => {
+   const { employee, loading } = useSelector((state) => state.data);
+  const dispatch = useDispatch();
+
+  console.log(employee);
+
+  useEffect(() => {
+    getEmployee(dispatch);
+  }, [dispatch]);
   return (
     <div className="container m-auto">
       <div className=" w-full">
@@ -12,7 +23,7 @@ const LeaveRequest = () => {
                 Employee Leave Each Months
               </p>
             </span>
-            <ApexChart />
+          <Charts  />
           </div>
           <div className="border border-gray-200 p-4 rounded-xl min-h-[300px] w-full md:w-[35%]">
             <p className="text-xl font-bold">Employee Leave Tracker</p>
@@ -45,7 +56,7 @@ const LeaveRequest = () => {
         </div>
       </div>
 
-      <EmployeeTable />
+      <EmployeeTable empData={employee} />
     </div>
   );
 };
